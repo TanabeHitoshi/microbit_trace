@@ -11,7 +11,6 @@ enum sensor {
     sensor_L,
     //% block="右手"
     sensor_armR,
-
 }
 
 /**
