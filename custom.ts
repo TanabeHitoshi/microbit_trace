@@ -87,8 +87,8 @@ namespace custom {
     //% block
     export function キャリブレーション(): void {
         while (true) {
-            serial.writeLine("calibration")
-            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
+//            serial.writeLine("calibration")
+//            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
             if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
                 Left_Senser_White = pins.analogReadPin(AnalogPin.P1)
              }
