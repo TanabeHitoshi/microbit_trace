@@ -90,17 +90,17 @@ namespace custom {
         while (true) {
 //            serial.writeLine("calibration")
 //            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
-             if (pins.analogReadPin(AnalogPin.P2) < Left_Senser_White_arm) {
-                Left_Senser_White_arm = pins.analogReadPin(AnalogPin.P2)
-             }
-             if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
+            if (pins.analogReadPin(AnalogPin.P2) < Right_Senser_White_arm) {
+                Right_Senser_White_arm = pins.analogReadPin(AnalogPin.P2)
+            }
+            if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
                 Left_Senser_White = pins.analogReadPin(AnalogPin.P1)
              }
              if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
                 Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
             }
-            if (pins.analogReadPin(AnalogPin.P2) > Left_Senser_Black_arm) {
-                Left_Senser_Black_arm = pins.analogReadPin(AnalogPin.P2)
+            if (pins.analogReadPin(AnalogPin.P2) > Right_Senser_Black_arm) {
+                Right_Senser_Black_arm = pins.analogReadPin(AnalogPin.P2)
             }
             if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
                 Left_Senser_Black = pins.analogReadPin(AnalogPin.P1)
