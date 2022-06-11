@@ -100,7 +100,7 @@ namespace custom {
                 Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
             }
             if (pins.analogReadPin(AnalogPin.P2) > Right_Senser_Black_arm) {
-                Right_Senser_Black_arm = pins.analogReadPin(AnalogPin.P0)
+                Right_Senser_Black_arm = pins.analogReadPin(AnalogPin.P2)
             }
             if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
                 Left_Senser_Black = pins.analogReadPin(AnalogPin.P1)
@@ -115,6 +115,8 @@ namespace custom {
                 serial.writeValue("Left_Senser_White", Left_Senser_White)
                 serial.writeValue("Right_Senser_Black", Right_Senser_Black)
                 serial.writeValue("Right_Senser_White", Right_Senser_White)
+                serial.writeValue("arm_Black", Right_Senser_Black_arm)
+                serial.writeValue("arm_White", Right_Senser_White_arm)
                 break;
             }
         }
