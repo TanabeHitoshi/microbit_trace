@@ -57,9 +57,9 @@ namespace custom {
         }
     }
     //% block
-    export function 走る(speed: number,rotate:number): void {
+    export function 走る(speed: number, rotate: number): void {
         let LSpeed = speed + rotate
-        if(LSpeed > 1023){
+        if (LSpeed > 1023) {
             LSpeed = 1023
         }
         if (LSpeed < -1023) {
@@ -71,7 +71,7 @@ namespace custom {
             RSpeed = 1023
         }
         if (RSpeed < -1023) {
-             RSpeed = -1023
+            RSpeed = -1023
         }
 
         左モーター(LSpeed)
@@ -79,8 +79,8 @@ namespace custom {
     }
     //% block
     export function モニタ(): void {
-        serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0) , Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100), Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100)])
-//        serial.writeValue("postion", pins.analogReadPin(AnalogPin.P1) - pins.analogReadPin(AnalogPin.P0))
+        serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0), Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100), Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100)])
+        //        serial.writeValue("postion", pins.analogReadPin(AnalogPin.P1) - pins.analogReadPin(AnalogPin.P0))
         serial.writeValue("postion", Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100) - Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100))
         serial.writeLine("------------------------------------------------------------------------")
         basic.pause(100)
@@ -88,15 +88,15 @@ namespace custom {
     //% block
     export function キャリブレーション(): void {
         while (true) {
-//            serial.writeLine("calibration")
-//            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
+            //            serial.writeLine("calibration")
+            //            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
             if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
                 Left_Senser_White = pins.analogReadPin(AnalogPin.P1)
-             }
-             if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
+            }
+            if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
                 Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
             }
-             if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
+            if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
                 Left_Senser_Black = pins.analogReadPin(AnalogPin.P1)
             }
             if (pins.analogReadPin(AnalogPin.P0) > Right_Senser_Black) {
@@ -113,17 +113,17 @@ namespace custom {
             }
         }
     }
-   /**
-     * TODO: describe your function here
-     * @param value describe value here, eg: 5
-     */
+    /**
+      * TODO: describe your function here
+      * @param value describe value here, eg: 5
+      */
     //% block
     export function ライン位置(): number {
-     
+
         //センサ値の標準化
         let L_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P1), Left_Senser_White, Left_Senser_Black, 0, 100)
         let R_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P0), Right_Senser_White, Right_Senser_Black, 0, 100)
-        
+
         let pos = L_sensor_std - R_sensor_std
 
         return Math.round(pos);
@@ -141,7 +141,7 @@ namespace custom {
 
     }
     //% block
-    export function ＰＤ制御(kp:number,kd:number): number {
+    export function ＰＤ制御(kp: number, kd: number): number {
         let diff = custom.ライン位置() - pre_pos
         let control = custom.ライン位置() * kp + diff * kd
         pre_pos = custom.ライン位置()
