@@ -4,7 +4,15 @@
 * このファイルを使って、独自の関数やブロックを定義してください。
 * 詳しくはこちらを参照してください：https://makecode.microbit.org/blocks/custom
 */
+enum sensor {
+    //% block="右センサー"
+    sensor_R,
+    //% block="左センサー"
+    sensor_L,
+    //% block="右手"
+    sensor_armR,
 
+}
 
 /**
  * Custom blocks
@@ -72,7 +80,7 @@ namespace custom {
     export function モニタ(): void {
         serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0) , Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100), Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100)])
 //        serial.writeValue("postion", pins.analogReadPin(AnalogPin.P1) - pins.analogReadPin(AnalogPin.P0))
-        serial.writeValue("postion", Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100) - Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100))
+        serial.writeValue("postion", Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100) - Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100))
         serial.writeLine("------------------------------------------------------------------------")
         basic.pause(100)
     }
@@ -115,9 +123,21 @@ namespace custom {
         let L_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P1), Left_Senser_White, Left_Senser_Black, 0, 100)
         let R_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P0), Right_Senser_White, Right_Senser_Black, 0, 100)
         
-        let pos = R_sensor_std - L_sensor_std
+        let pos = L_sensor_std - R_sensor_std
 
         return Math.round(pos);
+    }
+    //% block
+    export function センサー(i: sensor): any {
+        switch (i) {
+            case sensor.sensor_L:
+                return Math.map(pins.analogReadPin(AnalogPin.P1), Left_Senser_White, Left_Senser_Black, 0, 100)
+                break;
+            case sensor.sensor_R:
+                return Math.map(pins.analogReadPin(AnalogPin.P0), Right_Senser_White, Right_Senser_Black, 0, 100)
+                break;
+        }
+
     }
     //% block
     export function ＰＤ制御(kp:number,kd:number): number {
