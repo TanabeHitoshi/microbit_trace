@@ -1,6 +1,6 @@
 
 /**
-* ２センサーバージョン
+* ４センサーバージョン
 * このファイルを使って、独自の関数やブロックを定義してください。
 * 詳しくはこちらを参照してください：https://makecode.microbit.org/blocks/custom
 */
@@ -19,13 +19,9 @@ namespace custom {
      */
     let Left_Senser_White = 1023
     let Right_Senser_White = 1023
-    let Left_Senser_White2 = 1023
-    let Right_Senser_White2 = 1023
     let Right_Senser_Black = 0
     let Left_Senser_Black = 0
-    let Right_Senser_Black2 = 0
-    let Left_Senser_Black2 = 0
-     let pre_pos = 0
+    let pre_pos = 0
 
     //% block
     export function 左モーター(L_speed: number): void {
@@ -74,8 +70,8 @@ namespace custom {
     }
     //% block
     export function モニタ(): void {
-        serial.writeNumbers([pins.analogReadPin(AnalogPin.P3), pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0), pins.analogReadPin(AnalogPin.P4)])
-        serial.writeValue("postion", (pins.analogReadPin(AnalogPin.P3) * 2 + pins.analogReadPin(AnalogPin.P1)) - (pins.analogReadPin(AnalogPin.P0) + pins.analogReadPin(AnalogPin.P4) * 2))
+        serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
+        serial.writeValue("postion", pins.analogReadPin(AnalogPin.P1) - pins.analogReadPin(AnalogPin.P0))
         serial.writeLine("------------------------------------------------------------------------")
         basic.pause(100)
     }
@@ -84,24 +80,11 @@ namespace custom {
         while (true) {
             serial.writeLine("calibration")
             serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
-            if (pins.analogReadPin(AnalogPin.P3) < Left_Senser_White2) {
-                Left_Senser_White2 = pins.analogReadPin(AnalogPin.P3)
-            }
-            if (pins.analogReadPin(AnalogPin.P4) < Right_Senser_White2) {
-                Right_Senser_White2 = pins.analogReadPin(AnalogPin.P4)
-            }
             if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
                 Left_Senser_White = pins.analogReadPin(AnalogPin.P1)
              }
             if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
                 Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
-            }
-
-            if (pins.analogReadPin(AnalogPin.P3) > Left_Senser_Black2) {
-                Left_Senser_Black2 = pins.analogReadPin(AnalogPin.P3)
-            }
-            if (pins.analogReadPin(AnalogPin.P4) > Right_Senser_Black2) {
-                Right_Senser_Black2 = pins.analogReadPin(AnalogPin.P4)
             }
             if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
                 Left_Senser_Black = pins.analogReadPin(AnalogPin.P1)
@@ -114,12 +97,8 @@ namespace custom {
                 basic.pause(1000)
                 serial.writeValue("Left_Senser_Black", Left_Senser_Black)
                 serial.writeValue("Left_Senser_White", Left_Senser_White)
-                serial.writeValue("Left_Senser_Black2", Left_Senser_Black2)
-                serial.writeValue("Left_Senser_White2", Left_Senser_White2)
                 serial.writeValue("Right_Senser_Black", Right_Senser_Black)
                 serial.writeValue("Right_Senser_White", Right_Senser_White)
-                serial.writeValue("Right_Senser_Black2", Right_Senser_Black2)
-                serial.writeValue("Right_Senser_White2", Right_Senser_White2)
                 break;
             }
         }
@@ -133,11 +112,9 @@ namespace custom {
      
         //センサ値の標準化
         let L_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100)
-        let L_sensor_std2 = Math.map(pins.analogReadPin(AnalogPin.P4), Left_Senser_White2, Left_Senser_Black2, 0, 100)
         let R_sensor_std = Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100)
-        let R_sensor_std2 = Math.map(pins.analogReadPin(AnalogPin.P3), Right_Senser_White2, Right_Senser_Black2, 0, 100)
         
-        let pos = (R_sensor_std2 * 2 + R_sensor_std) - (L_sensor_std + L_sensor_std2*2)
+        let pos = R_sensor_std - L_sensor_std
 
         return Math.round(pos);
     }
