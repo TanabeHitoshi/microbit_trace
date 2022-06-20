@@ -26,10 +26,14 @@ namespace custom {
      */
     let Left_Senser_White = 1023
     let Right_Senser_White = 1023
+    let Left_Senser_White_2 = 1023
+    let Right_Senser_White_2 = 1023
     let Right_Senser_White_arm = 1023
-    let Right_Senser_Black = 0
-    let Right_Senser_Black_arm = 0
     let Left_Senser_Black = 0
+    let Right_Senser_Black = 0
+    let Left_Senser_Black_2 = 0
+    let Right_Senser_Black_2 = 0
+    let Right_Senser_Black_arm = 0
     let pre_pos = 0
 
     //% block
