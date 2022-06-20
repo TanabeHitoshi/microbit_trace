@@ -95,31 +95,53 @@ namespace custom {
         while (true) {
             //            serial.writeLine("calibration")
             //            serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0)])
-            if (pins.analogReadPin(AnalogPin.P2) < Right_Senser_White_arm) {
-                Right_Senser_White_arm = pins.analogReadPin(AnalogPin.P2)
+            if (pins.analogReadPin(AnalogPin.P4) < Left_Senser_White_2) {
+                Left_Senser_White_2 = pins.analogReadPin(AnalogPin.P4)
             }
+            if (pins.analogReadPin(AnalogPin.P4) > Left_Senser_Black_2) {
+                Left_Senser_Black_2 = pins.analogReadPin(AnalogPin.P4)
+            }
+
             if (pins.analogReadPin(AnalogPin.P1) < Left_Senser_White) {
                 Left_Senser_White = pins.analogReadPin(AnalogPin.P1)
             }
-            if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
-                Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
-            }
-            if (pins.analogReadPin(AnalogPin.P2) > Right_Senser_Black_arm) {
-                Right_Senser_Black_arm = pins.analogReadPin(AnalogPin.P2)
-            }
             if (pins.analogReadPin(AnalogPin.P1) > Left_Senser_Black) {
                 Left_Senser_Black = pins.analogReadPin(AnalogPin.P1)
+            }
+
+            if (pins.analogReadPin(AnalogPin.P3) < Right_Senser_White_2) {
+                Right_Senser_White_2 = pins.analogReadPin(AnalogPin.P3)
+            }
+            if (pins.analogReadPin(AnalogPin.P3) > Right_Senser_Black_2) {
+                Right_Senser_Black_2 = pins.analogReadPin(AnalogPin.P3)
+            }
+
+            if (pins.analogReadPin(AnalogPin.P0) < Right_Senser_White) {
+                Right_Senser_White = pins.analogReadPin(AnalogPin.P0)
             }
             if (pins.analogReadPin(AnalogPin.P0) > Right_Senser_Black) {
                 Right_Senser_Black = pins.analogReadPin(AnalogPin.P0)
             }
 
+            if (pins.analogReadPin(AnalogPin.P2) < Right_Senser_White_arm) {
+                Right_Senser_White_arm = pins.analogReadPin(AnalogPin.P2)
+            }
+            if (pins.analogReadPin(AnalogPin.P2) > Right_Senser_Black_arm) {
+                Right_Senser_Black_arm = pins.analogReadPin(AnalogPin.P2)
+            }
+
+
+
             if (pins.digitalReadPin(DigitalPin.P5) == 0) {
                 basic.pause(1000)
                 serial.writeValue("Left_Senser_Black", Left_Senser_Black)
                 serial.writeValue("Left_Senser_White", Left_Senser_White)
+                serial.writeValue("Left_Senser_Black_2", Left_Senser_Black_2)
+                serial.writeValue("Left_Senser_White_2", Left_Senser_White_2)
                 serial.writeValue("Right_Senser_Black", Right_Senser_Black)
                 serial.writeValue("Right_Senser_White", Right_Senser_White)
+                serial.writeValue("Right_Senser_Black_2", Right_Senser_Black_2)
+                serial.writeValue("Right_Senser_White_2", Right_Senser_White_2)
                 serial.writeValue("arm_Black", Right_Senser_Black_arm)
                 serial.writeValue("arm_White", Right_Senser_White_arm)
                 break;
