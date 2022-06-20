@@ -83,7 +83,7 @@ namespace custom {
     }
     //% block
     export function モニタ(): void {
-        serial.writeNumbers([pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0),pins.analogReadPin(AnalogPin.P2)])
+        serial.writeNumbers([pins.analogReadPin(AnalogPin.P4),pins.analogReadPin(AnalogPin.P1), pins.analogReadPin(AnalogPin.P0),pins.analogReadPin(AnalogPin.P3),pins.analogReadPin(AnalogPin.P2)])
         serial.writeNumbers( [Math.map(pins.analogReadPin(AnalogPin.P1), Right_Senser_White, Right_Senser_Black, 0, 100), Math.map(pins.analogReadPin(AnalogPin.P0), Left_Senser_White, Left_Senser_Black, 0, 100)])
         //        serial.writeValue("postion", pins.analogReadPin(AnalogPin.P1) - pins.analogReadPin(AnalogPin.P0))
         serial.writeValue("postion", Math.map(pins.analogReadPin(AnalogPin.P1), Left_Senser_White, Left_Senser_Black, 0, 100) - Math.map(pins.analogReadPin(AnalogPin.P0), Right_Senser_White, Right_Senser_Black, 0, 100))
