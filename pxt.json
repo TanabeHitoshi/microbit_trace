@@ -1,5 +1,5 @@
 {
-    "name": "Joto_Trace_4",
+    "name": "Joto_Trace",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -20,12 +20,12 @@
         "branch": "v4.0.18",
         "tag": "v4.0.18",
         "commits": "https://github.com/microsoft/pxt-microbit/commits/b9d2eeff8116b75fa50f663091b0e3acd800b7bc",
-        "target": "4.0.18",
+        "target": "5.0.6",
         "pxt": "7.0.14",
         "targetId": "microbit"
     },
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
