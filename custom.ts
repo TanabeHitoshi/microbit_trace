@@ -174,8 +174,10 @@ namespace custom {
             case sensor.sensor_R:
                 return Math.map(pins.analogReadPin(AnalogPin.P0), Right_Senser_White, Right_Senser_Black, 0, 100)
                 break;
+            case sensor.sensor_armR:
+                return Math.map(pins.analogReadPin(AnalogPin.P2), Right_Senser_White_arm, Right_Senser_Black_arm, 0, 100)
+                break;
         }
-
     }
     //% block
     export function ＰＤ制御(kp: number, kd: number): number {
