@@ -3,6 +3,7 @@ input.onButtonPressed(Button.B, function () {
     basic.showNumber(カウント)
 })
 custom.キャリブレーション()
+// serial.writeValue("outOfcurce", custom.コースアウトの方向(10, 10))
 basic.forever(function () {
-    serial.writeValue("sensor", custom.センサーの値(10, 10))
+    custom.走る(900 - Math.abs(custom.ライン位置()) * 5, custom.ＰＤ制御(2, 1))
 })

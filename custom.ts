@@ -37,6 +37,7 @@ namespace custom {
     let pre_pos = 0
     let state = 0
     let arm_count = 0
+    let outOFcurce = 'C'
 
     //% block
     export function 左モーター(L_speed: number): void {
@@ -193,6 +194,21 @@ namespace custom {
             s = s + 2
         }
         return s;
+    }
+
+    //% block
+    export function コースアウトの方向(th_L: number, th_R: number): string {
+
+        if (custom.センサーの値(th_L, th_R) == 1) {
+            outOFcurce = 'L'
+        }
+        if (custom.センサーの値(th_L, th_R) == 2) {
+            outOFcurce = 'R'
+        }
+        if (custom.センサーの値(th_L, th_R) == 3) {
+            outOFcurce = 'C'
+        }
+        return outOFcurce;
     }
 
     //% block
