@@ -184,12 +184,12 @@ namespace custom {
     }
 
     //% block
-    export function センサーの値(): number {
+    export function センサーの値(th_L:number ,th_R:number): number {
         let s = 0
-        if (custom.センサー(sensor.sensor_R) < 10) {
+        if (custom.センサー(sensor.sensor_R) < th_R) {
             s = s + 1
         }
-        if (custom.センサー(sensor.sensor_L) < 10) {
+        if (custom.センサー(sensor.sensor_L) < th_L) {
             s = s + 2
         }
         return s;

@@ -4,5 +4,5 @@ input.onButtonPressed(Button.B, function () {
 })
 custom.キャリブレーション()
 basic.forever(function () {
-    serial.writeValue("sensor", custom.センサーの値())
+    serial.writeValue("sensor", custom.センサーの値(10, 10))
 })
