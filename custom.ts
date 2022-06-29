@@ -167,6 +167,7 @@ namespace custom {
 
         return Math.round(pos);
     }
+
     //% block
     export function センサー(i: sensor): any {
         switch (i) {
@@ -181,6 +182,19 @@ namespace custom {
                 break;
         }
     }
+
+    //% block
+    export function センサーの値(): number {
+        let s = 0
+        if (custom.センサー(sensor.sensor_R) < 10) {
+            s = s + 1
+        }
+        if (custom.センサー(sensor.sensor_L) < 10) {
+            s = s + 2
+        }
+        return s;
+    }
+
     //% block
     export function ＰＤ制御(kp: number, kd: number): number {
         let diff = custom.ライン位置() - pre_pos
