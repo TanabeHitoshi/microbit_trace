@@ -218,6 +218,7 @@ namespace custom {
         pre_pos = custom.ライン位置()
         return control
     }
+
     //% block
     export function 右手の回数(): number {
         if (custom.センサー(sensor.sensor_armR) < 30 && state == 0) {
