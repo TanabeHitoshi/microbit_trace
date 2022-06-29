@@ -35,6 +35,8 @@ namespace custom {
     let Right_Senser_Black_2 = 0
     let Right_Senser_Black_arm = 0
     let pre_pos = 0
+    let state = 0
+    let arm_count = 0
 
     //% block
     export function 左モーター(L_speed: number): void {
@@ -186,5 +188,16 @@ namespace custom {
         pre_pos = custom.ライン位置()
         return control
     }
-
+    //% block
+    export function 右手の回数(): number {
+        if (custom.センサー(sensor.sensor_armR) < 30 && state == 0) {
+            basic.pause(50)
+            state = 1
+        }
+        if (custom.センサー(sensor.sensor_armR) > 80 && state == 1) {
+            arm_count += 1
+            state = 0
+        }
+        return arm_count;
+    }
 }
